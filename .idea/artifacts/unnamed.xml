@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="unnamed">
+    <output-path>$PROJECT_DIR$/</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="main.main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="250" />
+        <option name="nativeBundle" value="all" />
+        <option name="paramFile" value="" />
+        <option name="title" value="My first java app" />
+        <option name="vendor" value="" />
+        <option name="width" value="250" />
+      </options>
+    </properties>
+    <root id="root" />
+  </artifact>
+</component>

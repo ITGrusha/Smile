@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_смайлик!" default="compile.module.смайлик!">
+  <dirname property="module.смайлик!.basedir" file="${ant.file.module_смайлик!}"/>
+  
+  <property name="module.jdk.home.смайлик!" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.смайлик!" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.смайлик!" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.смайлик!" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="смайлик!.output.dir" value="${module.смайлик!.basedir}/out/production/Смайлик!"/>
+  <property name="смайлик!.testoutput.dir" value="${module.смайлик!.basedir}/out/test/Смайлик!"/>
+  
+  <path id="смайлик!.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="смайлик!.module.production.classpath">
+    <path refid="${module.jdk.classpath.смайлик!}"/>
+  </path>
+  
+  <path id="смайлик!.runtime.production.module.classpath">
+    <pathelement location="${смайлик!.output.dir}"/>
+  </path>
+  
+  <path id="смайлик!.module.classpath">
+    <path refid="${module.jdk.classpath.смайлик!}"/>
+    <pathelement location="${смайлик!.output.dir}"/>
+  </path>
+  
+  <path id="смайлик!.runtime.module.classpath">
+    <pathelement location="${смайлик!.testoutput.dir}"/>
+    <pathelement location="${смайлик!.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.смайлик!">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.смайлик!">
+    <patternset refid="excluded.from.module.смайлик!"/>
+  </patternset>
+  
+  <path id="смайлик!.module.sourcepath">
+    <dirset dir="${module.смайлик!.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.смайлик!" depends="compile.module.смайлик!.production,compile.module.смайлик!.tests" description="Compile module Смайлик!"/>
+  
+  <target name="compile.module.смайлик!.production" depends="register.custom.compilers" description="Compile module Смайлик!; production classes">
+    <mkdir dir="${смайлик!.output.dir}"/>
+    <javac2 destdir="${смайлик!.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.смайлик!}/javac">
+      <compilerarg line="${compiler.args.смайлик!}"/>
+      <bootclasspath refid="смайлик!.module.bootclasspath"/>
+      <classpath refid="смайлик!.module.production.classpath"/>
+      <src refid="смайлик!.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.смайлик!"/>
+    </javac2>
+    
+    <copy todir="${смайлик!.output.dir}">
+      <fileset dir="${module.смайлик!.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.смайлик!.tests" depends="register.custom.compilers,compile.module.смайлик!.production" description="compile module Смайлик!; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.смайлик!" description="cleanup module">
+    <delete dir="${смайлик!.output.dir}"/>
+    <delete dir="${смайлик!.testoutput.dir}"/>
+  </target>
+</project>
